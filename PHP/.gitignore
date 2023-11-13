@@ -19,5 +19,6 @@ composer.lock
 # PHPUnit
 coverage
 .phpunit.result.cache
+.phpunit.cache/
 
 IgnoreTest.php

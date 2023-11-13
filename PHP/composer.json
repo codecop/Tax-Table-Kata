@@ -11,7 +11,7 @@
         "brick/math": "0.8.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "8.5.*"
+        "phpunit/phpunit": "10.0.*"
     },
     "autoload": {
         "psr-4": {
