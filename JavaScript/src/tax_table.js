@@ -5,13 +5,13 @@ var bigdecimal = require("bigdecimal");
  * @param {bigdecimal.BigDecimal} threshold
  * @param {bigdecimal.BigDecimal} percentage
  */
-function DiscountLevel(threshold, percentage) {
+function IncomeRange(threshold, percentage) {
   this.threshold = threshold;
   this.percentage = percentage;
 }
 
-function RabattRechner() {
-  this.noDiscount = new bigdecimal.BigDecimal(0);
+function TaxTable() {
+  this.noTax = new bigdecimal.BigDecimal(0);
   this.levels = [];
 }
 
@@ -19,24 +19,24 @@ function RabattRechner() {
  * @param {bigdecimal.BigDecimal} threshold
  * @param {number} percentage
  */
-RabattRechner.prototype.addDiscountLevel = function(threshold, percentage) {
+TaxTable.prototype.addProgression = function(threshold, percentage) {
   /** @type {bigdecimal.BigDecimal} */
   var decimalPercentage = new bigdecimal.BigDecimal(percentage).divide(new bigdecimal.BigDecimal(100));
-  this.levels.push(new DiscountLevel(threshold, decimalPercentage));
+  this.levels.push(new IncomeRange(threshold, decimalPercentage));
 };
 
 /**
- * @param {bigdecimal.BigDecimal} purchase
+ * @param {bigdecimal.BigDecimal} income
  */
-RabattRechner.prototype.discountFor = function(purchase) {
+TaxTable.prototype.taxFor = function(income) {
   for (var i = 0; i < this.levels.length; i++) {
-    if (purchase.compareTo(this.levels[i].threshold) >= 0) {
-      return purchase.multiply(this.levels[i].percentage);
+    if (income.compareTo(this.levels[i].threshold) >= 0) {
+      return income.multiply(this.levels[i].percentage);
     }
   }
-  return this.noDiscount;
+  return this.noTax;
 };
 
 module.exports = {
-  RabattRechner: RabattRechner
+  TaxTable: TaxTable
 };

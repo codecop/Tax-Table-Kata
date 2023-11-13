@@ -1,7 +1,7 @@
 import { BigDecimal } from 'bigdecimal';
 // https://github.com/iriscouch/bigdecimal.js
 
-class DiscountLevel {
+class IncomeRange {
   public readonly threshold: BigDecimal;
   public readonly percentage: BigDecimal;
 
@@ -11,27 +11,27 @@ class DiscountLevel {
   }
 }
 
-export class RabattRechner {
-  private noDiscount: BigDecimal;
-  private levels: DiscountLevel[];
+export class TaxTable {
+  private noTax: BigDecimal;
+  private levels: IncomeRange[];
 
   constructor() {
-    this.noDiscount = new BigDecimal(0);
+    this.noTax = new BigDecimal(0);
     this.levels = [];
   }
 
-  addDiscountLevel(threshold: BigDecimal, percentage: number): void {
+  addProgression(threshold: BigDecimal, percentage: number): void {
     const decimalPercentage = new BigDecimal(percentage).divide(new BigDecimal(100));
-    this.levels.push(new DiscountLevel(threshold, decimalPercentage));
+    this.levels.push(new IncomeRange(threshold, decimalPercentage));
   }
 
-  discountFor(purchase: BigDecimal): BigDecimal {
+  taxFor(income: BigDecimal): BigDecimal {
     for (let i = 0; i < this.levels.length; i++) {
-      if (purchase.compareTo(this.levels[i].threshold) >= 0) {
-        return purchase.multiply(this.levels[i].percentage);
+      if (income.compareTo(this.levels[i].threshold) >= 0) {
+        return income.multiply(this.levels[i].percentage);
       }
     }
-    return this.noDiscount;
+    return this.noTax;
   }
 
 }

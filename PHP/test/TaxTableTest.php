@@ -3,18 +3,18 @@ namespace Test;
 
 use Brick\Math\BigDecimal;
 use PHPUnit\Framework\TestCase;
-use Shop\RabattRechner;
+use Gov\TaxTable;
 
-class RabattRechnerTest extends TestCase
+class TaxTableTest extends TestCase
 {
 
-    private $calculator;
+    private $table;
 
     /** @before */
-    public function setUpDiscount()
+    public function setUpTaxTable()
     {
-        $this->calculator = new RabattRechner();
-        $this->calculator->addDiscountLevel(BigDecimal::of(1000), 3);
+        $this->table = new TaxTable();
+        $this->table->addProgression(BigDecimal::of(1000), 3);
     }
 
     /** @test */

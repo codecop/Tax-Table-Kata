@@ -1,6 +1,6 @@
 {
-    "name": "codecop/rabatt-rechner",
-    "description": "Discount Calculator",
+    "name": "codecop/tax-table",
+    "description": "Tax Table",
     "license": "BSD",
     "authors": [
         {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Shop\\": "src"
+            "Gov\\": "src"
         }
     },
     "autoload-dev": {

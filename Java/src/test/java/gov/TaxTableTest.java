@@ -1,4 +1,4 @@
-package biz.shop;
+package gov;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class RabattRechnerTest {
+class TaxTableTest {
 
-    private RabattRechner calculator = new RabattRechner();
+    private TaxTable table = new TaxTable();
 
     @BeforeEach
-    void setUpDiscount() {
-        calculator.addDiscountLevel(new BigDecimal(1000), 3);
+    void setUpTaxTable() {
+        table.addProgression(new BigDecimal(1000), 3);
     }
 
     @Test

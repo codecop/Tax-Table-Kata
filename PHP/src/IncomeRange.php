@@ -1,9 +1,9 @@
 <?php
-namespace Shop;
+namespace Gov;
 
 use Brick\Math\BigDecimal;
 
-class DiscountLevel
+class IncomeRange
 {
     public $threshold;
     public $percentage;

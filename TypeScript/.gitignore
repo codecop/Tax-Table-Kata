@@ -10,7 +10,6 @@ coverage/
 .stryker-tmp
 
 # Typescript
-typings
 src/**/*.js
 src/**/*.js.map
 tests/**/*.js
